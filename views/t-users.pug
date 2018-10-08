@@ -1,0 +1,23 @@
+extends pug-bootstrap/adminLayout
+block content
+    h1.page-header Telegram Users
+    .table-responsive
+        if users
+            table.table.table-striped
+                thead
+                    tr
+                        th #ID
+                        th Full Name
+                        th Username
+                        th Phone
+                tbody
+                    each user, i in users
+                        tr
+                            td #{user.chat_id}
+                            td #{user.full_name}
+                            td #{user.username}
+                            td #{user.phone}
+        else
+            p Foydalanuvchi topilmadi
+append scripts
+    script(src="/js/custom.js")

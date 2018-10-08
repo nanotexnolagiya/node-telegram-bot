@@ -1,0 +1,23 @@
+extends pug-bootstrap/adminLayout
+block content
+    h1.page-header Menu add
+    .row
+        .col-md-8
+            form#addMenu(method="post")
+                .form-group
+                    input.form-control(type="text", name="name" placeholder="Menu name")
+                .form-group
+                    textarea.form-control(name="text", cols="30", rows="10")
+                .form-group
+                    select.form-control(name="pid")
+                        option(disabled, selected) --- Select Parent Menu ---
+                        if menues
+                            option(value="0") Start Menu
+                            each menu, i in menues
+                                option(value=menu.id) #{menu.name} (PID: #{menu.pid})
+                        else
+                            option(value="0") Start Menu
+                .form-group
+                    .row
+                        .col-md-3
+                            button.btn.btn-lg.btn-primary.btn-block(type='submit') Save

@@ -1,0 +1,28 @@
+extends pug-bootstrap/adminLayout
+block content
+    h1.page-header Menu edit
+    .row
+        .col-md-8
+            form#editMenu(method="POST", action="/admin/bot-menu/edit")
+                input(type="hidden", name="id", value=menu.id)
+                .form-group
+                    input.form-control(type="text", name="name" value=menu.name)
+                .form-group
+                    textarea.form-control(name="text", cols="30", rows="10")
+                        | #{menu.text}
+                .form-group
+                    select.form-control(name="pid")
+                        if menues
+                            if (menu.pid == 0)
+                                option(value="0", selected) Start Menu
+                            else
+                                option(value="0") Start Menu
+                            each m, i in menues
+                                if (menu.pid == m.id)
+                                    option(value=m.id, selected) #{m.name}
+                                else
+                                    option(value=m.id) #{m.name}
+                .form-group
+                    .row
+                        .col-md-3
+                            button.btn.btn-lg.btn-primary.btn-block(type='submit') Save

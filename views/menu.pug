@@ -1,0 +1,29 @@
+extends pug-bootstrap/adminLayout
+block content
+    h1.page-header Menu
+    a.btn.btn-primary(href="/admin/bot-menu/add") Menu qo'shish
+    hr
+    .table-responsive
+        if menues
+            table.table.table-striped
+                thead
+                    tr
+                        th #ID
+                        th Name
+                        th Text
+                        th PID
+                        th.text-right Actions
+                tbody
+                    each menu, i in menues
+                        tr
+                            td #{menu.id}
+                            td #{menu.name}
+                            td #{menu.text}
+                            td #{menu.pid}
+                            td.text-right
+                                a.glyphicon.glyphicon-pencil(href="/admin/bot-menu/edit/" + menu.id)
+                                a.menuDelete.glyphicon.glyphicon-trash(href=menu.id, style="margin-left: 10px;")
+        else
+            p Menyular topilmadi
+append scripts
+    script(src="/js/custom.js")

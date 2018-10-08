@@ -1,0 +1,21 @@
+extends pug-bootstrap/adminLayout
+block content
+    h1.page-header Webhook
+    .row
+        .col-md-8
+            form#setWebhook(method="post")
+                .form-group
+                    - var currentWebhook = '';
+                    if message
+                        - currentWebhook = message.url || '';
+                    input.form-control(type="url", name="webhook_url" value=currentWebhook placeholder="https://example.com")
+                if message
+                    - var className = message.ok ? 'success' : 'danger';
+                    if message.message
+                        .alert(class="alert-" + className)
+                            each m, i in message.message
+                                p #{m}
+                .form-group
+                    .row
+                        .col-md-3
+                            button.btn.btn-lg.btn-primary.btn-block(type='submit') Save and Set
